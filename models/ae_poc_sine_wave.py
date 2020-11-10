@@ -25,6 +25,7 @@ Created on Mon Nov  2 08:14:37 2020
 # -------------------------------------------------
 
 # Step 1 Load Dataset and Import Libraries
+#
 
 # --------------------------------------------------
 # The more complex the data, the more the analyst has 
@@ -63,7 +64,7 @@ wd = os.getcwd()
 print(wd)
 os.chdir('/Users/sylviachadha/Desktop/Github/Data')
 
-df = pd.read_csv('Sine_wave.csv', index_col='time')
+df = pd.read_csv('Sine_wave.csv', index_col='t')
 df.describe()
 df.head()
 len(df)
