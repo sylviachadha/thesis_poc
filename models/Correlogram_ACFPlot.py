@@ -15,6 +15,7 @@ import pandas as pd
 
 # One Cycle / Pattern Extraction
 # --------------------------------
+##############################################################
 # Example 1 Synthetic Sine wave
 # Check working directory
 wd = os.getcwd()
@@ -72,7 +73,7 @@ print(max_correlated_index)
 plot_acf(df['y'], lags=60)
 plt.show()
 
-#############################################################
+#########################################################################
 # Example 2 Synthetic Triangle wave
 # Load dataset
 
@@ -115,6 +116,7 @@ print(max_correlated_index)
 # near -1 -> stronger -ve linear relationship (one goes up, other goes down)
 # near 0 -> weaker linear relationship or no association
 
+# Example 3 ##############################################################
 # Real ECG Dataset
 
 os.chdir('/Users/sylviachadha/Desktop/ECG_Data')
