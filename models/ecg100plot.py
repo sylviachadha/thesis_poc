@@ -22,16 +22,17 @@ def set_color(y):
     elif y == "+":
         return "olivedrab"
     elif y == "/":
-        return "fuchsia"
+        return "yellow"
 
-
-record = wfdb.rdrecord('data/100')
+record = wfdb.rdrecord('/Users/sylviachadha/PycharmProjects/thesis_poc/data/100')
 df_input = pd.DataFrame()
 df_input['y'] = record.p_signal[:, 0]
 
 df = df_input[:108001]
 
-annotation = wfdb.rdann('data/100', 'atr')
+annotation = wfdb.rdann('/Users/sylviachadha/PycharmProjects/thesis_poc/data/100', 'atr')
+
+#annotation = wfdb.rdann('data/100', 'atr')
 df_label = pd.DataFrame()
 df_label['sample'] = annotation.sample[:]
 df_label['label'] = annotation.symbol[:]
