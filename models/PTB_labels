@@ -122,6 +122,10 @@ def plots(ecg_id):
 
 
 # Call function to plot various types of ecg
+#---------------------------------------------------
+# Plots done as per signal X which starts from 0 while Y labels start from 1, 
+# we chk labels from Y eg label 8 is MI but plot as per signal value which is
+# x which will be 7 corresponding to 8th label.
 plots(0)  #NORM
 plots(7)  #MI(IMI)
 plots(163) #STTC(ISCA)
