@@ -18,6 +18,10 @@ import statistics
 from keras.layers import Input, Dense, Dropout
 from keras.layers import Dense
 from keras.models import Model, load_model
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.io as pio
+pio.renderers.default = "browser"
 
 # Step 2 Check working directory and read dataset
 # --------------------------------------------------
@@ -179,28 +183,48 @@ ae_nn = model.fit(train_X, train_X,
 
 # Predicted and actual arrays, need to flatten both because both are sequences of length 10
 pred = model.predict(train_X)
-pred_train = pred.flatten()
+# pred_train = pred.flatten()
 
-actual_train = train_X.flatten()
 
-print(len(pred_train))
-print(len(actual_train))
+# actual_train = train_X.flatten()
+
+# print(len(pred_train))
+# print(len(actual_train))
+
+# transpose pred and train_X to plot
+
+pred_transpose = pred.transpose()
+train_X_transpose = train_X.transpose()
+
+# Change pred_transpose,train_X_transpose ndarray into df
+predicted_train = pd.DataFrame(pred_transpose)
+actual_train = pd.DataFrame(train_X_transpose)
+
+# Now in columns there are 6 series / patients u can check how they fit
+# U need to merge values for which patient u want to see
+
+mergedDf = predicted_train.merge(actual_train, left_index=True, right_index=True)
+print(len(mergedDf)) # in our case should come 1000
+mergedDf
+# print(mergedDf.columns)
+# print(mergedDf.rename(columns={'0_x': 'predicted_train', '0_y': 'actual_train'}, inplace=True))
+
 
 # Step 10 Change predicted and actual arrays to dataframe to see the plot
 # and view actual & predicted values side by side by merging into 1 df
 # ---------------------------------------------------------------------------
 
-predicted_df = pd.DataFrame(pred_train)
-
-actual_df = pd.DataFrame(actual_train)
+# predicted_df = pd.DataFrame(pred_train)
+#
+# actual_df = pd.DataFrame(actual_train)
 
 # Merge two dataframes based on index
 
-mergedDf = predicted_df.merge(actual_df, left_index=True, right_index=True)
-print(len(mergedDf))
-mergedDf
-print(mergedDf.columns)
-print(mergedDf.rename(columns={'0_x': 'predicted_train', '0_y': 'actual_train'}, inplace=True))
+# mergedDf = predicted_df.merge(actual_df, left_index=True, right_index=True)
+# print(len(mergedDf))
+# mergedDf
+# print(mergedDf.columns)
+# print(mergedDf.rename(columns={'0_x': 'predicted_train', '0_y': 'actual_train'}, inplace=True))
 
 
 # Step 11 - Qualitative Check on Training Data
@@ -208,11 +232,21 @@ print(mergedDf.rename(columns={'0_x': 'predicted_train', '0_y': 'actual_train'},
 # ---------------------------------------------------------------------------
 
 # Add index which is df_train['time'] to merged df inorder to plot
-mergedDf.index = df_train['time']
+# mergedDf.index = df_train['time']
+# mergedDf.plot()
+# plt.show()
+
+
 mergedDf.plot()
 plt.show()
 
+fig = px.line(mergedDf, color='variable',
+                  title="12 Lead ECG")
+fig.show()
+
+
 # Step 12 - Quantitative Check on Training Data
+# Flattened above cz of quantitative chk
 # ---------------------------------------------------------------------------
 # Average mae or mse for the whole training data
 # np.average to get 1 value for whole training set
