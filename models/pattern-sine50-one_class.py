@@ -295,12 +295,12 @@ def evaluate_model(y_actual, y_pred):
     cm = confusion_matrix(y_actual, y_pred)
     print(cm)
     acc = accuracy_score(y_actual, y_pred)
-    recall = recall_score(y_actual, y_pred)
-    precision = precision_score(y_actual, y_pred)
-    f1score = f1_score(y_actual, y_pred)
+    recall = recall_score(y_actual, y_pred, pos_label=-1)
+    precision = precision_score(y_actual, y_pred, pos_label=-1)
+    f1score = f1_score(y_actual, y_pred, pos_label=-1)
     return(cm, acc, recall, precision, f1score)
 
-# Model 1 Logistic Regression
+# Model 1 One Class SVM
 ocsvm_result = evaluate_model(y_test, ypred1)
 print("One class svm values for cm, accuracy, recall, precision and f1 score", ocsvm_result)
 ocsvm.report = classification_report(y_test, ypred1)
@@ -365,7 +365,7 @@ print("iForest values for cm, accuracy, recall, precision and f1 score", iforest
 
 
 
-# ---------------------------------------------------------------------
+# ----------------------------------------------------------------------
 # PART C - TOTAL 53 DATA = 42 TRAIN DATA AND 11 TEST DATA
 # ---------------------------------------------------------------------
 # 40 TEST DATA added from minority class from remaining 47 samples
