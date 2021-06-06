@@ -17,7 +17,7 @@ def load_raw_data(df, sampling_rate, path):
     return data
 
 
-path = '/Users/sylviachadha/Desktop/PTB-XL Database/'
+path = '/Users/sylvia/Desktop/Thesis/Dataset/ptb-xl/'
 sampling_rate = 100
 
 # load and convert annotation data
@@ -92,11 +92,7 @@ def plot12lead(ecg_id):
 # Call Function
 plot12lead(X_train[0])
 plot12lead(X_train[7])
-plot12lead(X_train[163])
-plot12lead(X_train[854])
-plot12lead(X_train[153])
-
-
-
-
+# plot12lead(X_train[163])
+# plot12lead(X_train[854])
+# plot12lead(X_train[153])
 
