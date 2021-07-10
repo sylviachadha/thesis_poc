@@ -123,19 +123,25 @@ for i in range(1, no_of_cycles+1):
     plt.plot(cycle_i['Index'], cycle_i['Signal'])
     x = ecg_p_peaks[i-1]
     y = cycle_i.loc[cycle_i['Index'] == x, 'Signal'].iloc[0]
-    plt.scatter(x, y, color='red')
+    plt.scatter(x, y, color='red', s=80, label='Peaks')
+    plt.text(x, y, 'P', size = 20)
     x = ecg_t_peaks[i - 1]
     y = cycle_i.loc[cycle_i['Index'] == x, 'Signal'].iloc[0]
-    plt.scatter(x, y, color='red')
+    plt.scatter(x, y, color='red', s=80)
+    plt.text(x, y, 'T', size=20)
     x = ecg_q_peaks[i - 1]
     y = cycle_i.loc[cycle_i['Index'] == x, 'Signal'].iloc[0]
-    plt.scatter(x, y, color='red')
+    plt.scatter(x, y, color='red', s=80)
+    plt.text(x, y, 'Q', size=20)
     x = ecg_s_peaks[i - 1]
     y = cycle_i.loc[cycle_i['Index'] == x, 'Signal'].iloc[0]
-    plt.scatter(x, y, color='red')
+    plt.scatter(x, y, color='red', s=80)
+    plt.text(x, y, 'S', size=20)
     x = ecg_r_peaks[i - 1]
     y = cycle_i.loc[cycle_i['Index'] == x, 'Signal'].iloc[0]
-    plt.scatter(x, y, color='red')
+    plt.scatter(x, y, color='red', s=80)
+    plt.text(x, y, 'R', size=15)
+    plt.legend(loc="upper right", prop={'size': 15})
     print(len(cycle_i))
     plt.show()
 
